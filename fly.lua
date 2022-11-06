@@ -1,474 +1,271 @@
-local main = Instance.new("ScreenGui")
-local Frame = Instance.new("Frame")
-local up = Instance.new("TextButton")
-local down = Instance.new("TextButton")
-local onof = Instance.new("TextButton")
-local TextLabel = Instance.new("TextLabel")
-local plus = Instance.new("TextButton")
-local speed = Instance.new("TextLabel")
-local mine = Instance.new("TextButton")
-local closebutton = Instance.new("TextButton")
-local mini = Instance.new("TextButton")
-local mini2 = Instance.new("TextButton")
-
-main.Name = "main"
-main.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-main.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-main.ResetOnSpawn = false
-
-Frame.Parent = main
-Frame.BackgroundColor3 = Color3.fromRGB(163, 255, 137)
-Frame.BorderColor3 = Color3.fromRGB(103, 221, 213)
-Frame.Position = UDim2.new(0.100320168, 0, 0.379746825, 0)
-Frame.Size = UDim2.new(0, 190, 0, 57)
-
-up.Name = "up"
-up.Parent = Frame
-up.BackgroundColor3 = Color3.fromRGB(79, 255, 152)
-up.Size = UDim2.new(0, 44, 0, 28)
-up.Font = Enum.Font.SourceSans
-up.Text = "UP"
-up.TextColor3 = Color3.fromRGB(0, 0, 0)
-up.TextSize = 14.000
-
-down.Name = "down"
-down.Parent = Frame
-down.BackgroundColor3 = Color3.fromRGB(215, 255, 121)
-down.Position = UDim2.new(0, 0, 0.491228074, 0)
-down.Size = UDim2.new(0, 44, 0, 28)
-down.Font = Enum.Font.SourceSans
-down.Text = "DOWN"
-down.TextColor3 = Color3.fromRGB(0, 0, 0)
-down.TextSize = 14.000
-
-onof.Name = "onof"
-onof.Parent = Frame
-onof.BackgroundColor3 = Color3.fromRGB(255, 249, 74)
-onof.Position = UDim2.new(0.702823281, 0, 0.491228074, 0)
-onof.Size = UDim2.new(0, 56, 0, 28)
-onof.Font = Enum.Font.SourceSans
-onof.Text = "fly"
-onof.TextColor3 = Color3.fromRGB(0, 0, 0)
-onof.TextSize = 14.000
-
-TextLabel.Parent = Frame
-TextLabel.BackgroundColor3 = Color3.fromRGB(242, 60, 255)
-TextLabel.Position = UDim2.new(0.469327301, 0, 0, 0)
-TextLabel.Size = UDim2.new(0, 100, 0, 28)
-TextLabel.Font = Enum.Font.SourceSans
-TextLabel.Text = "Fly GUI V3"
-TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel.TextScaled = true
-TextLabel.TextSize = 14.000
-TextLabel.TextWrapped = true
-
-plus.Name = "plus"
-plus.Parent = Frame
-plus.BackgroundColor3 = Color3.fromRGB(133, 145, 255)
-plus.Position = UDim2.new(0.231578946, 0, 0, 0)
-plus.Size = UDim2.new(0, 45, 0, 28)
-plus.Font = Enum.Font.SourceSans
-plus.Text = "+"
-plus.TextColor3 = Color3.fromRGB(0, 0, 0)
-plus.TextScaled = true
-plus.TextSize = 14.000
-plus.TextWrapped = true
-
-speed.Name = "speed"
-speed.Parent = Frame
-speed.BackgroundColor3 = Color3.fromRGB(255, 85, 0)
-speed.Position = UDim2.new(0.468421042, 0, 0.491228074, 0)
-speed.Size = UDim2.new(0, 44, 0, 28)
-speed.Font = Enum.Font.SourceSans
-speed.Text = "1"
-speed.TextColor3 = Color3.fromRGB(0, 0, 0)
-speed.TextScaled = true
-speed.TextSize = 14.000
-speed.TextWrapped = true
-
-mine.Name = "mine"
-mine.Parent = Frame
-mine.BackgroundColor3 = Color3.fromRGB(123, 255, 247)
-mine.Position = UDim2.new(0.231578946, 0, 0.491228074, 0)
-mine.Size = UDim2.new(0, 45, 0, 29)
-mine.Font = Enum.Font.SourceSans
-mine.Text = "-"
-mine.TextColor3 = Color3.fromRGB(0, 0, 0)
-mine.TextScaled = true
-mine.TextSize = 14.000
-mine.TextWrapped = true
-
-closebutton.Name = "Close"
-closebutton.Parent = main.Frame
-closebutton.BackgroundColor3 = Color3.fromRGB(225, 25, 0)
-closebutton.Font = "SourceSans"
-closebutton.Size = UDim2.new(0, 45, 0, 28)
-closebutton.Text = "X"
-closebutton.TextSize = 30
-closebutton.Position =  UDim2.new(0, 0, -1, 27)
-
-mini.Name = "minimize"
-mini.Parent = main.Frame
-mini.BackgroundColor3 = Color3.fromRGB(192, 150, 230)
-mini.Font = "SourceSans"
-mini.Size = UDim2.new(0, 45, 0, 28)
-mini.Text = "-"
-mini.TextSize = 40
-mini.Position = UDim2.new(0, 44, -1, 27)
-
-mini2.Name = "minimize2"
-mini2.Parent = main.Frame
-mini2.BackgroundColor3 = Color3.fromRGB(192, 150, 230)
-mini2.Font = "SourceSans"
-mini2.Size = UDim2.new(0, 45, 0, 28)
-mini2.Text = "+"
-mini2.TextSize = 40
-mini2.Position = UDim2.new(0, 44, -1, 57)
-mini2.Visible = false
-
-speeds = 1
-
-local speaker = game:GetService("Players").LocalPlayer
-
-local chr = game.Players.LocalPlayer.Character
-local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
-
-nowe = false
-
-game:GetService("StarterGui"):SetCore("SendNotification", { 
-	Title = "Fly GUI V3";
-	Text = "by Shinki";
-	Icon = "rbxthumb://type=Asset&id=5107182114&w=150&h=150"})
-Duration = 5;
-
-Frame.Active = true -- main = gui
-Frame.Draggable = true
-
-onof.MouseButton1Down:connect(function()
-
-	if nowe == true then
-		nowe = false
-
-		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Climbing,true)
-		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,true)
-		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Flying,true)
-		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Freefall,true)
-		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.GettingUp,true)
-		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Jumping,true)
-		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Landed,true)
-		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Physics,true)
-		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.PlatformStanding,true)
-		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Ragdoll,true)
-		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Running,true)
-		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.RunningNoPhysics,true)
-		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated,true)
-		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.StrafingNoPhysics,true)
-		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Swimming,true)
-		speaker.Character.Humanoid:ChangeState(Enum.HumanoidStateType.RunningNoPhysics)
-	else 
-		nowe = true
-
-
-
-		for i = 1, speeds do
-			spawn(function()
-
-				local hb = game:GetService("RunService").Heartbeat	
-
-
-				tpwalking = true
-				local chr = game.Players.LocalPlayer.Character
-				local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
-				while tpwalking and hb:Wait() and chr and hum and hum.Parent do
-					if hum.MoveDirection.Magnitude > 0 then
-						chr:TranslateBy(hum.MoveDirection)
-					end
-				end
-
-			end)
-		end
-		game.Players.LocalPlayer.Character.Animate.Disabled = true
-		local Char = game.Players.LocalPlayer.Character
-		local Hum = Char:FindFirstChildOfClass("Humanoid") or Char:FindFirstChildOfClass("AnimationController")
-
-		for i,v in next, Hum:GetPlayingAnimationTracks() do
-			v:AdjustSpeed(0)
-		end
-		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Climbing,false)
-		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,false)
-		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Flying,false)
-		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Freefall,false)
-		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.GettingUp,false)
-		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Jumping,false)
-		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Landed,false)
-		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Physics,false)
-		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.PlatformStanding,false)
-		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Ragdoll,false)
-		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Running,false)
-		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.RunningNoPhysics,false)
-		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated,false)
-		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.StrafingNoPhysics,false)
-		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Swimming,false)
-		speaker.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Swimming)
-	end
-
-
-
-
-	if game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid").RigType == Enum.HumanoidRigType.R6 then
-
-
-
-		local plr = game.Players.LocalPlayer
-		local torso = plr.Character.Torso
-		local flying = true
-		local deb = true
-		local ctrl = {f = 0, b = 0, l = 0, r = 0}
-		local lastctrl = {f = 0, b = 0, l = 0, r = 0}
-		local maxspeed = 50
-		local speed = 0
-
-
-		local bg = Instance.new("BodyGyro", torso)
-		bg.P = 9e4
-		bg.maxTorque = Vector3.new(9e9, 9e9, 9e9)
-		bg.cframe = torso.CFrame
-		local bv = Instance.new("BodyVelocity", torso)
-		bv.velocity = Vector3.new(0,0.1,0)
-		bv.maxForce = Vector3.new(9e9, 9e9, 9e9)
-		if nowe == true then
-			plr.Character.Humanoid.PlatformStand = true
-		end
-		while nowe == true or game:GetService("Players").LocalPlayer.Character.Humanoid.Health == 0 do
-			game:GetService("RunService").RenderStepped:Wait()
-
-			if ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0 then
-				speed = speed+.5+(speed/maxspeed)
-				if speed > maxspeed then
-					speed = maxspeed
-				end
-			elseif not (ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0) and speed ~= 0 then
-				speed = speed-1
-				if speed < 0 then
-					speed = 0
-				end
-			end
-			if (ctrl.l + ctrl.r) ~= 0 or (ctrl.f + ctrl.b) ~= 0 then
-				bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (ctrl.f+ctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(ctrl.l+ctrl.r,(ctrl.f+ctrl.b)*.2,0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p))*speed
-				lastctrl = {f = ctrl.f, b = ctrl.b, l = ctrl.l, r = ctrl.r}
-			elseif (ctrl.l + ctrl.r) == 0 and (ctrl.f + ctrl.b) == 0 and speed ~= 0 then
-				bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (lastctrl.f+lastctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(lastctrl.l+lastctrl.r,(lastctrl.f+lastctrl.b)*.2,0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p))*speed
-			else
-				bv.velocity = Vector3.new(0,0,0)
-			end
-			--	game.Players.LocalPlayer.Character.Animate.Disabled = true
-			bg.cframe = game.Workspace.CurrentCamera.CoordinateFrame * CFrame.Angles(-math.rad((ctrl.f+ctrl.b)*50*speed/maxspeed),0,0)
-		end
-		ctrl = {f = 0, b = 0, l = 0, r = 0}
-		lastctrl = {f = 0, b = 0, l = 0, r = 0}
-		speed = 0
-		bg:Destroy()
-		bv:Destroy()
-		plr.Character.Humanoid.PlatformStand = false
-		game.Players.LocalPlayer.Character.Animate.Disabled = false
-		tpwalking = false
-
-
-
-
-	else
-		local plr = game.Players.LocalPlayer
-		local UpperTorso = plr.Character.UpperTorso
-		local flying = true
-		local deb = true
-		local ctrl = {f = 0, b = 0, l = 0, r = 0}
-		local lastctrl = {f = 0, b = 0, l = 0, r = 0}
-		local maxspeed = 50
-		local speed = 0
-
-
-		local bg = Instance.new("BodyGyro", UpperTorso)
-		bg.P = 9e4
-		bg.maxTorque = Vector3.new(9e9, 9e9, 9e9)
-		bg.cframe = UpperTorso.CFrame
-		local bv = Instance.new("BodyVelocity", UpperTorso)
-		bv.velocity = Vector3.new(0,0.1,0)
-		bv.maxForce = Vector3.new(9e9, 9e9, 9e9)
-		if nowe == true then
-			plr.Character.Humanoid.PlatformStand = true
-		end
-		while nowe == true or game:GetService("Players").LocalPlayer.Character.Humanoid.Health == 0 do
-			wait()
-
-			if ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0 then
-				speed = speed+.5+(speed/maxspeed)
-				if speed > maxspeed then
-					speed = maxspeed
-				end
-			elseif not (ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0) and speed ~= 0 then
-				speed = speed-1
-				if speed < 0 then
-					speed = 0
-				end
-			end
-			if (ctrl.l + ctrl.r) ~= 0 or (ctrl.f + ctrl.b) ~= 0 then
-				bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (ctrl.f+ctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(ctrl.l+ctrl.r,(ctrl.f+ctrl.b)*.2,0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p))*speed
-				lastctrl = {f = ctrl.f, b = ctrl.b, l = ctrl.l, r = ctrl.r}
-			elseif (ctrl.l + ctrl.r) == 0 and (ctrl.f + ctrl.b) == 0 and speed ~= 0 then
-				bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (lastctrl.f+lastctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(lastctrl.l+lastctrl.r,(lastctrl.f+lastctrl.b)*.2,0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p))*speed
-			else
-				bv.velocity = Vector3.new(0,0,0)
-			end
-
-			bg.cframe = game.Workspace.CurrentCamera.CoordinateFrame * CFrame.Angles(-math.rad((ctrl.f+ctrl.b)*50*speed/maxspeed),0,0)
-		end
-		ctrl = {f = 0, b = 0, l = 0, r = 0}
-		lastctrl = {f = 0, b = 0, l = 0, r = 0}
-		speed = 0
-		bg:Destroy()
-		bv:Destroy()
-		plr.Character.Humanoid.PlatformStand = false
-		game.Players.LocalPlayer.Character.Animate.Disabled = false
-		tpwalking = false
-
-
-
-	end
-
-
-
-
-
-end)
-
-local tis
-
-up.MouseButton1Down:connect(function()
-	tis = up.MouseEnter:connect(function()
-		while tis do
-			wait()
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,1,0)
-		end
-	end)
-end)
-
-up.MouseLeave:connect(function()
-	if tis then
-		tis:Disconnect()
-		tis = nil
-	end
-end)
-
-local dis
-
-down.MouseButton1Down:connect(function()
-	dis = down.MouseEnter:connect(function()
-		while dis do
-			wait()
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,-1,0)
-		end
-	end)
-end)
-
-down.MouseLeave:connect(function()
-	if dis then
-		dis:Disconnect()
-		dis = nil
-	end
-end)
-
-
-game:GetService("Players").LocalPlayer.CharacterAdded:Connect(function(char)
-	wait(0.7)
-	game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
-	game.Players.LocalPlayer.Character.Animate.Disabled = false
-
-end)
-
-
-plus.MouseButton1Down:connect(function()
-	speeds = speeds + 1
-	speed.Text = speeds
-	if nowe == true then
-
-
-		tpwalking = false
-		for i = 1, speeds do
-			spawn(function()
-
-				local hb = game:GetService("RunService").Heartbeat	
-
-
-				tpwalking = true
-				local chr = game.Players.LocalPlayer.Character
-				local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
-				while tpwalking and hb:Wait() and chr and hum and hum.Parent do
-					if hum.MoveDirection.Magnitude > 0 then
-						chr:TranslateBy(hum.MoveDirection)
-					end
-				end
-
-			end)
-		end
-	end
-end)
-mine.MouseButton1Down:connect(function()
-	if speeds == 1 then
-		speed.Text = 'cannot be less than 1'
-		wait(1)
-		speed.Text = speeds
-	else
-		speeds = speeds - 1
-		speed.Text = speeds
-		if nowe == true then
-			tpwalking = false
-			for i = 1, speeds do
-				spawn(function()
-
-					local hb = game:GetService("RunService").Heartbeat	
-
-
-					tpwalking = true
-					local chr = game.Players.LocalPlayer.Character
-					local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
-					while tpwalking and hb:Wait() and chr and hum and hum.Parent do
-						if hum.MoveDirection.Magnitude > 0 then
-							chr:TranslateBy(hum.MoveDirection)
-						end
-					end
-
-				end)
-			end
-		end
-	end
-end)
-
-closebutton.MouseButton1Click:Connect(function()
-	main:Destroy()
-end)
-
-mini.MouseButton1Click:Connect(function()
-	up.Visible = false
-	down.Visible = false
-	onof.Visible = false
-	plus.Visible = false
-	speed.Visible = false
-	mine.Visible = false
-	mini.Visible = false
-	mini2.Visible = true
-	main.Frame.BackgroundTransparency = 1
-	closebutton.Position =  UDim2.new(0, 0, -1, 57)
-end)
-
-mini2.MouseButton1Click:Connect(function()
-	up.Visible = true
-	down.Visible = true
-	onof.Visible = true
-	plus.Visible = true
-	speed.Visible = true
-	mine.Visible = true
-	mini.Visible = true
-	mini2.Visible = false
-	main.Frame.BackgroundTransparency = 0 
-	closebutton.Position =  UDim2.new(0, 0, -1, 27)
-end)
+bG9jYWwgbWFpbiA9IEluc3RhbmNlLm5ldygiU2NyZWVuR3VpIikKbG9jYWwgRnJhbWUgPSBJbnN0
+YW5jZS5uZXcoIkZyYW1lIikKbG9jYWwgdXAgPSBJbnN0YW5jZS5uZXcoIlRleHRCdXR0b24iKQps
+b2NhbCBkb3duID0gSW5zdGFuY2UubmV3KCJUZXh0QnV0dG9uIikKbG9jYWwgb25vZiA9IEluc3Rh
+bmNlLm5ldygiVGV4dEJ1dHRvbiIpCmxvY2FsIFRleHRMYWJlbCA9IEluc3RhbmNlLm5ldygiVGV4
+dExhYmVsIikKbG9jYWwgcGx1cyA9IEluc3RhbmNlLm5ldygiVGV4dEJ1dHRvbiIpCmxvY2FsIHNw
+ZWVkID0gSW5zdGFuY2UubmV3KCJUZXh0TGFiZWwiKQpsb2NhbCBtaW5lID0gSW5zdGFuY2UubmV3
+KCJUZXh0QnV0dG9uIikKbG9jYWwgY2xvc2VidXR0b24gPSBJbnN0YW5jZS5uZXcoIlRleHRCdXR0
+b24iKQpsb2NhbCBtaW5pID0gSW5zdGFuY2UubmV3KCJUZXh0QnV0dG9uIikKbG9jYWwgbWluaTIg
+PSBJbnN0YW5jZS5uZXcoIlRleHRCdXR0b24iKQoKbWFpbi5OYW1lID0gIm1haW4iCm1haW4uUGFy
+ZW50ID0gZ2FtZS5QbGF5ZXJzLkxvY2FsUGxheWVyOldhaXRGb3JDaGlsZCgiUGxheWVyR3VpIikK
+bWFpbi5aSW5kZXhCZWhhdmlvciA9IEVudW0uWkluZGV4QmVoYXZpb3IuU2libGluZwptYWluLlJl
+c2V0T25TcGF3biA9IGZhbHNlCgpGcmFtZS5QYXJlbnQgPSBtYWluCkZyYW1lLkJhY2tncm91bmRD
+b2xvcjMgPSBDb2xvcjMuZnJvbVJHQigxNjMsIDI1NSwgMTM3KQpGcmFtZS5Cb3JkZXJDb2xvcjMg
+PSBDb2xvcjMuZnJvbVJHQigxMDMsIDIyMSwgMjEzKQpGcmFtZS5Qb3NpdGlvbiA9IFVEaW0yLm5l
+dygwLjEwMDMyMDE2OCwgMCwgMC4zNzk3NDY4MjUsIDApCkZyYW1lLlNpemUgPSBVRGltMi5uZXco
+MCwgMTkwLCAwLCA1NykKCnVwLk5hbWUgPSAidXAiCnVwLlBhcmVudCA9IEZyYW1lCnVwLkJhY2tn
+cm91bmRDb2xvcjMgPSBDb2xvcjMuZnJvbVJHQig3OSwgMjU1LCAxNTIpCnVwLlNpemUgPSBVRGlt
+Mi5uZXcoMCwgNDQsIDAsIDI4KQp1cC5Gb250ID0gRW51bS5Gb250LlNvdXJjZVNhbnMKdXAuVGV4
+dCA9ICJVUCIKdXAuVGV4dENvbG9yMyA9IENvbG9yMy5mcm9tUkdCKDAsIDAsIDApCnVwLlRleHRT
+aXplID0gMTQuMDAwCgpkb3duLk5hbWUgPSAiZG93biIKZG93bi5QYXJlbnQgPSBGcmFtZQpkb3du
+LkJhY2tncm91bmRDb2xvcjMgPSBDb2xvcjMuZnJvbVJHQigyMTUsIDI1NSwgMTIxKQpkb3duLlBv
+c2l0aW9uID0gVURpbTIubmV3KDAsIDAsIDAuNDkxMjI4MDc0LCAwKQpkb3duLlNpemUgPSBVRGlt
+Mi5uZXcoMCwgNDQsIDAsIDI4KQpkb3duLkZvbnQgPSBFbnVtLkZvbnQuU291cmNlU2Fucwpkb3du
+LlRleHQgPSAiRE9XTiIKZG93bi5UZXh0Q29sb3IzID0gQ29sb3IzLmZyb21SR0IoMCwgMCwgMCkK
+ZG93bi5UZXh0U2l6ZSA9IDE0LjAwMAoKb25vZi5OYW1lID0gIm9ub2YiCm9ub2YuUGFyZW50ID0g
+RnJhbWUKb25vZi5CYWNrZ3JvdW5kQ29sb3IzID0gQ29sb3IzLmZyb21SR0IoMjU1LCAyNDksIDc0
+KQpvbm9mLlBvc2l0aW9uID0gVURpbTIubmV3KDAuNzAyODIzMjgxLCAwLCAwLjQ5MTIyODA3NCwg
+MCkKb25vZi5TaXplID0gVURpbTIubmV3KDAsIDU2LCAwLCAyOCkKb25vZi5Gb250ID0gRW51bS5G
+b250LlNvdXJjZVNhbnMKb25vZi5UZXh0ID0gImZseSIKb25vZi5UZXh0Q29sb3IzID0gQ29sb3Iz
+LmZyb21SR0IoMCwgMCwgMCkKb25vZi5UZXh0U2l6ZSA9IDE0LjAwMAoKVGV4dExhYmVsLlBhcmVu
+dCA9IEZyYW1lClRleHRMYWJlbC5CYWNrZ3JvdW5kQ29sb3IzID0gQ29sb3IzLmZyb21SR0IoMjQy
+LCA2MCwgMjU1KQpUZXh0TGFiZWwuUG9zaXRpb24gPSBVRGltMi5uZXcoMC40NjkzMjczMDEsIDAs
+IDAsIDApClRleHRMYWJlbC5TaXplID0gVURpbTIubmV3KDAsIDEwMCwgMCwgMjgpClRleHRMYWJl
+bC5Gb250ID0gRW51bS5Gb250LlNvdXJjZVNhbnMKVGV4dExhYmVsLlRleHQgPSAiRmx5IEdVSSBW
+MyIKVGV4dExhYmVsLlRleHRDb2xvcjMgPSBDb2xvcjMuZnJvbVJHQigwLCAwLCAwKQpUZXh0TGFi
+ZWwuVGV4dFNjYWxlZCA9IHRydWUKVGV4dExhYmVsLlRleHRTaXplID0gMTQuMDAwClRleHRMYWJl
+bC5UZXh0V3JhcHBlZCA9IHRydWUKCnBsdXMuTmFtZSA9ICJwbHVzIgpwbHVzLlBhcmVudCA9IEZy
+YW1lCnBsdXMuQmFja2dyb3VuZENvbG9yMyA9IENvbG9yMy5mcm9tUkdCKDEzMywgMTQ1LCAyNTUp
+CnBsdXMuUG9zaXRpb24gPSBVRGltMi5uZXcoMC4yMzE1Nzg5NDYsIDAsIDAsIDApCnBsdXMuU2l6
+ZSA9IFVEaW0yLm5ldygwLCA0NSwgMCwgMjgpCnBsdXMuRm9udCA9IEVudW0uRm9udC5Tb3VyY2VT
+YW5zCnBsdXMuVGV4dCA9ICIrIgpwbHVzLlRleHRDb2xvcjMgPSBDb2xvcjMuZnJvbVJHQigwLCAw
+LCAwKQpwbHVzLlRleHRTY2FsZWQgPSB0cnVlCnBsdXMuVGV4dFNpemUgPSAxNC4wMDAKcGx1cy5U
+ZXh0V3JhcHBlZCA9IHRydWUKCnNwZWVkLk5hbWUgPSAic3BlZWQiCnNwZWVkLlBhcmVudCA9IEZy
+YW1lCnNwZWVkLkJhY2tncm91bmRDb2xvcjMgPSBDb2xvcjMuZnJvbVJHQigyNTUsIDg1LCAwKQpz
+cGVlZC5Qb3NpdGlvbiA9IFVEaW0yLm5ldygwLjQ2ODQyMTA0MiwgMCwgMC40OTEyMjgwNzQsIDAp
+CnNwZWVkLlNpemUgPSBVRGltMi5uZXcoMCwgNDQsIDAsIDI4KQpzcGVlZC5Gb250ID0gRW51bS5G
+b250LlNvdXJjZVNhbnMKc3BlZWQuVGV4dCA9ICIxIgpzcGVlZC5UZXh0Q29sb3IzID0gQ29sb3Iz
+LmZyb21SR0IoMCwgMCwgMCkKc3BlZWQuVGV4dFNjYWxlZCA9IHRydWUKc3BlZWQuVGV4dFNpemUg
+PSAxNC4wMDAKc3BlZWQuVGV4dFdyYXBwZWQgPSB0cnVlCgptaW5lLk5hbWUgPSAibWluZSIKbWlu
+ZS5QYXJlbnQgPSBGcmFtZQptaW5lLkJhY2tncm91bmRDb2xvcjMgPSBDb2xvcjMuZnJvbVJHQigx
+MjMsIDI1NSwgMjQ3KQptaW5lLlBvc2l0aW9uID0gVURpbTIubmV3KDAuMjMxNTc4OTQ2LCAwLCAw
+LjQ5MTIyODA3NCwgMCkKbWluZS5TaXplID0gVURpbTIubmV3KDAsIDQ1LCAwLCAyOSkKbWluZS5G
+b250ID0gRW51bS5Gb250LlNvdXJjZVNhbnMKbWluZS5UZXh0ID0gIi0iCm1pbmUuVGV4dENvbG9y
+MyA9IENvbG9yMy5mcm9tUkdCKDAsIDAsIDApCm1pbmUuVGV4dFNjYWxlZCA9IHRydWUKbWluZS5U
+ZXh0U2l6ZSA9IDE0LjAwMAptaW5lLlRleHRXcmFwcGVkID0gdHJ1ZQoKY2xvc2VidXR0b24uTmFt
+ZSA9ICJDbG9zZSIKY2xvc2VidXR0b24uUGFyZW50ID0gbWFpbi5GcmFtZQpjbG9zZWJ1dHRvbi5C
+YWNrZ3JvdW5kQ29sb3IzID0gQ29sb3IzLmZyb21SR0IoMjI1LCAyNSwgMCkKY2xvc2VidXR0b24u
+Rm9udCA9ICJTb3VyY2VTYW5zIgpjbG9zZWJ1dHRvbi5TaXplID0gVURpbTIubmV3KDAsIDQ1LCAw
+LCAyOCkKY2xvc2VidXR0b24uVGV4dCA9ICJYIgpjbG9zZWJ1dHRvbi5UZXh0U2l6ZSA9IDMwCmNs
+b3NlYnV0dG9uLlBvc2l0aW9uID0gIFVEaW0yLm5ldygwLCAwLCAtMSwgMjcpCgptaW5pLk5hbWUg
+PSAibWluaW1pemUiCm1pbmkuUGFyZW50ID0gbWFpbi5GcmFtZQptaW5pLkJhY2tncm91bmRDb2xv
+cjMgPSBDb2xvcjMuZnJvbVJHQigxOTIsIDE1MCwgMjMwKQptaW5pLkZvbnQgPSAiU291cmNlU2Fu
+cyIKbWluaS5TaXplID0gVURpbTIubmV3KDAsIDQ1LCAwLCAyOCkKbWluaS5UZXh0ID0gIi0iCm1p
+bmkuVGV4dFNpemUgPSA0MAptaW5pLlBvc2l0aW9uID0gVURpbTIubmV3KDAsIDQ0LCAtMSwgMjcp
+CgptaW5pMi5OYW1lID0gIm1pbmltaXplMiIKbWluaTIuUGFyZW50ID0gbWFpbi5GcmFtZQptaW5p
+Mi5CYWNrZ3JvdW5kQ29sb3IzID0gQ29sb3IzLmZyb21SR0IoMTkyLCAxNTAsIDIzMCkKbWluaTIu
+Rm9udCA9ICJTb3VyY2VTYW5zIgptaW5pMi5TaXplID0gVURpbTIubmV3KDAsIDQ1LCAwLCAyOCkK
+bWluaTIuVGV4dCA9ICIrIgptaW5pMi5UZXh0U2l6ZSA9IDQwCm1pbmkyLlBvc2l0aW9uID0gVURp
+bTIubmV3KDAsIDQ0LCAtMSwgNTcpCm1pbmkyLlZpc2libGUgPSBmYWxzZQoKc3BlZWRzID0gMQoK
+bG9jYWwgc3BlYWtlciA9IGdhbWU6R2V0U2VydmljZSgiUGxheWVycyIpLkxvY2FsUGxheWVyCgps
+b2NhbCBjaHIgPSBnYW1lLlBsYXllcnMuTG9jYWxQbGF5ZXIuQ2hhcmFjdGVyCmxvY2FsIGh1bSA9
+IGNociBhbmQgY2hyOkZpbmRGaXJzdENoaWxkV2hpY2hJc0EoIkh1bWFub2lkIikKCm5vd2UgPSBm
+YWxzZQoKZ2FtZTpHZXRTZXJ2aWNlKCJTdGFydGVyR3VpIik6U2V0Q29yZSgiU2VuZE5vdGlmaWNh
+dGlvbiIsIHsgCglUaXRsZSA9ICJGbHkgR1VJIFYzIjsKCVRleHQgPSAiYnkgbXdya3oiOwoJSWNv
+biA9ICJyYnh0aHVtYjovL3R5cGU9QXNzZXQmaWQ9NTEwNzE4MjExNCZ3PTE1MCZoPTE1MCJ9KQpE
+dXJhdGlvbiA9IDU7CgpGcmFtZS5BY3RpdmUgPSB0cnVlIC0tIG1haW4gPSBndWkKRnJhbWUuRHJh
+Z2dhYmxlID0gdHJ1ZQoKb25vZi5Nb3VzZUJ1dHRvbjFEb3duOmNvbm5lY3QoZnVuY3Rpb24oKQoK
+CWlmIG5vd2UgPT0gdHJ1ZSB0aGVuCgkJbm93ZSA9IGZhbHNlCgoJCXNwZWFrZXIuQ2hhcmFjdGVy
+Lkh1bWFub2lkOlNldFN0YXRlRW5hYmxlZChFbnVtLkh1bWFub2lkU3RhdGVUeXBlLkNsaW1iaW5n
+LHRydWUpCgkJc3BlYWtlci5DaGFyYWN0ZXIuSHVtYW5vaWQ6U2V0U3RhdGVFbmFibGVkKEVudW0u
+SHVtYW5vaWRTdGF0ZVR5cGUuRmFsbGluZ0Rvd24sdHJ1ZSkKCQlzcGVha2VyLkNoYXJhY3Rlci5I
+dW1hbm9pZDpTZXRTdGF0ZUVuYWJsZWQoRW51bS5IdW1hbm9pZFN0YXRlVHlwZS5GbHlpbmcsdHJ1
+ZSkKCQlzcGVha2VyLkNoYXJhY3Rlci5IdW1hbm9pZDpTZXRTdGF0ZUVuYWJsZWQoRW51bS5IdW1h
+bm9pZFN0YXRlVHlwZS5GcmVlZmFsbCx0cnVlKQoJCXNwZWFrZXIuQ2hhcmFjdGVyLkh1bWFub2lk
+OlNldFN0YXRlRW5hYmxlZChFbnVtLkh1bWFub2lkU3RhdGVUeXBlLkdldHRpbmdVcCx0cnVlKQoJ
+CXNwZWFrZXIuQ2hhcmFjdGVyLkh1bWFub2lkOlNldFN0YXRlRW5hYmxlZChFbnVtLkh1bWFub2lk
+U3RhdGVUeXBlLkp1bXBpbmcsdHJ1ZSkKCQlzcGVha2VyLkNoYXJhY3Rlci5IdW1hbm9pZDpTZXRT
+dGF0ZUVuYWJsZWQoRW51bS5IdW1hbm9pZFN0YXRlVHlwZS5MYW5kZWQsdHJ1ZSkKCQlzcGVha2Vy
+LkNoYXJhY3Rlci5IdW1hbm9pZDpTZXRTdGF0ZUVuYWJsZWQoRW51bS5IdW1hbm9pZFN0YXRlVHlw
+ZS5QaHlzaWNzLHRydWUpCgkJc3BlYWtlci5DaGFyYWN0ZXIuSHVtYW5vaWQ6U2V0U3RhdGVFbmFi
+bGVkKEVudW0uSHVtYW5vaWRTdGF0ZVR5cGUuUGxhdGZvcm1TdGFuZGluZyx0cnVlKQoJCXNwZWFr
+ZXIuQ2hhcmFjdGVyLkh1bWFub2lkOlNldFN0YXRlRW5hYmxlZChFbnVtLkh1bWFub2lkU3RhdGVU
+eXBlLlJhZ2RvbGwsdHJ1ZSkKCQlzcGVha2VyLkNoYXJhY3Rlci5IdW1hbm9pZDpTZXRTdGF0ZUVu
+YWJsZWQoRW51bS5IdW1hbm9pZFN0YXRlVHlwZS5SdW5uaW5nLHRydWUpCgkJc3BlYWtlci5DaGFy
+YWN0ZXIuSHVtYW5vaWQ6U2V0U3RhdGVFbmFibGVkKEVudW0uSHVtYW5vaWRTdGF0ZVR5cGUuUnVu
+bmluZ05vUGh5c2ljcyx0cnVlKQoJCXNwZWFrZXIuQ2hhcmFjdGVyLkh1bWFub2lkOlNldFN0YXRl
+RW5hYmxlZChFbnVtLkh1bWFub2lkU3RhdGVUeXBlLlNlYXRlZCx0cnVlKQoJCXNwZWFrZXIuQ2hh
+cmFjdGVyLkh1bWFub2lkOlNldFN0YXRlRW5hYmxlZChFbnVtLkh1bWFub2lkU3RhdGVUeXBlLlN0
+cmFmaW5nTm9QaHlzaWNzLHRydWUpCgkJc3BlYWtlci5DaGFyYWN0ZXIuSHVtYW5vaWQ6U2V0U3Rh
+dGVFbmFibGVkKEVudW0uSHVtYW5vaWRTdGF0ZVR5cGUuU3dpbW1pbmcsdHJ1ZSkKCQlzcGVha2Vy
+LkNoYXJhY3Rlci5IdW1hbm9pZDpDaGFuZ2VTdGF0ZShFbnVtLkh1bWFub2lkU3RhdGVUeXBlLlJ1
+bm5pbmdOb1BoeXNpY3MpCgllbHNlIAoJCW5vd2UgPSB0cnVlCgoKCgkJZm9yIGkgPSAxLCBzcGVl
+ZHMgZG8KCQkJc3Bhd24oZnVuY3Rpb24oKQoKCQkJCWxvY2FsIGhiID0gZ2FtZTpHZXRTZXJ2aWNl
+KCJSdW5TZXJ2aWNlIikuSGVhcnRiZWF0CQoKCgkJCQl0cHdhbGtpbmcgPSB0cnVlCgkJCQlsb2Nh
+bCBjaHIgPSBnYW1lLlBsYXllcnMuTG9jYWxQbGF5ZXIuQ2hhcmFjdGVyCgkJCQlsb2NhbCBodW0g
+PSBjaHIgYW5kIGNocjpGaW5kRmlyc3RDaGlsZFdoaWNoSXNBKCJIdW1hbm9pZCIpCgkJCQl3aGls
+ZSB0cHdhbGtpbmcgYW5kIGhiOldhaXQoKSBhbmQgY2hyIGFuZCBodW0gYW5kIGh1bS5QYXJlbnQg
+ZG8KCQkJCQlpZiBodW0uTW92ZURpcmVjdGlvbi5NYWduaXR1ZGUgPiAwIHRoZW4KCQkJCQkJY2hy
+OlRyYW5zbGF0ZUJ5KGh1bS5Nb3ZlRGlyZWN0aW9uKQoJCQkJCWVuZAoJCQkJZW5kCgoJCQllbmQp
+CgkJZW5kCgkJZ2FtZS5QbGF5ZXJzLkxvY2FsUGxheWVyLkNoYXJhY3Rlci5BbmltYXRlLkRpc2Fi
+bGVkID0gdHJ1ZQoJCWxvY2FsIENoYXIgPSBnYW1lLlBsYXllcnMuTG9jYWxQbGF5ZXIuQ2hhcmFj
+dGVyCgkJbG9jYWwgSHVtID0gQ2hhcjpGaW5kRmlyc3RDaGlsZE9mQ2xhc3MoIkh1bWFub2lkIikg
+b3IgQ2hhcjpGaW5kRmlyc3RDaGlsZE9mQ2xhc3MoIkFuaW1hdGlvbkNvbnRyb2xsZXIiKQoKCQlm
+b3IgaSx2IGluIG5leHQsIEh1bTpHZXRQbGF5aW5nQW5pbWF0aW9uVHJhY2tzKCkgZG8KCQkJdjpB
+ZGp1c3RTcGVlZCgwKQoJCWVuZAoJCXNwZWFrZXIuQ2hhcmFjdGVyLkh1bWFub2lkOlNldFN0YXRl
+RW5hYmxlZChFbnVtLkh1bWFub2lkU3RhdGVUeXBlLkNsaW1iaW5nLGZhbHNlKQoJCXNwZWFrZXIu
+Q2hhcmFjdGVyLkh1bWFub2lkOlNldFN0YXRlRW5hYmxlZChFbnVtLkh1bWFub2lkU3RhdGVUeXBl
+LkZhbGxpbmdEb3duLGZhbHNlKQoJCXNwZWFrZXIuQ2hhcmFjdGVyLkh1bWFub2lkOlNldFN0YXRl
+RW5hYmxlZChFbnVtLkh1bWFub2lkU3RhdGVUeXBlLkZseWluZyxmYWxzZSkKCQlzcGVha2VyLkNo
+YXJhY3Rlci5IdW1hbm9pZDpTZXRTdGF0ZUVuYWJsZWQoRW51bS5IdW1hbm9pZFN0YXRlVHlwZS5G
+cmVlZmFsbCxmYWxzZSkKCQlzcGVha2VyLkNoYXJhY3Rlci5IdW1hbm9pZDpTZXRTdGF0ZUVuYWJs
+ZWQoRW51bS5IdW1hbm9pZFN0YXRlVHlwZS5HZXR0aW5nVXAsZmFsc2UpCgkJc3BlYWtlci5DaGFy
+YWN0ZXIuSHVtYW5vaWQ6U2V0U3RhdGVFbmFibGVkKEVudW0uSHVtYW5vaWRTdGF0ZVR5cGUuSnVt
+cGluZyxmYWxzZSkKCQlzcGVha2VyLkNoYXJhY3Rlci5IdW1hbm9pZDpTZXRTdGF0ZUVuYWJsZWQo
+RW51bS5IdW1hbm9pZFN0YXRlVHlwZS5MYW5kZWQsZmFsc2UpCgkJc3BlYWtlci5DaGFyYWN0ZXIu
+SHVtYW5vaWQ6U2V0U3RhdGVFbmFibGVkKEVudW0uSHVtYW5vaWRTdGF0ZVR5cGUuUGh5c2ljcyxm
+YWxzZSkKCQlzcGVha2VyLkNoYXJhY3Rlci5IdW1hbm9pZDpTZXRTdGF0ZUVuYWJsZWQoRW51bS5I
+dW1hbm9pZFN0YXRlVHlwZS5QbGF0Zm9ybVN0YW5kaW5nLGZhbHNlKQoJCXNwZWFrZXIuQ2hhcmFj
+dGVyLkh1bWFub2lkOlNldFN0YXRlRW5hYmxlZChFbnVtLkh1bWFub2lkU3RhdGVUeXBlLlJhZ2Rv
+bGwsZmFsc2UpCgkJc3BlYWtlci5DaGFyYWN0ZXIuSHVtYW5vaWQ6U2V0U3RhdGVFbmFibGVkKEVu
+dW0uSHVtYW5vaWRTdGF0ZVR5cGUuUnVubmluZyxmYWxzZSkKCQlzcGVha2VyLkNoYXJhY3Rlci5I
+dW1hbm9pZDpTZXRTdGF0ZUVuYWJsZWQoRW51bS5IdW1hbm9pZFN0YXRlVHlwZS5SdW5uaW5nTm9Q
+aHlzaWNzLGZhbHNlKQoJCXNwZWFrZXIuQ2hhcmFjdGVyLkh1bWFub2lkOlNldFN0YXRlRW5hYmxl
+ZChFbnVtLkh1bWFub2lkU3RhdGVUeXBlLlNlYXRlZCxmYWxzZSkKCQlzcGVha2VyLkNoYXJhY3Rl
+ci5IdW1hbm9pZDpTZXRTdGF0ZUVuYWJsZWQoRW51bS5IdW1hbm9pZFN0YXRlVHlwZS5TdHJhZmlu
+Z05vUGh5c2ljcyxmYWxzZSkKCQlzcGVha2VyLkNoYXJhY3Rlci5IdW1hbm9pZDpTZXRTdGF0ZUVu
+YWJsZWQoRW51bS5IdW1hbm9pZFN0YXRlVHlwZS5Td2ltbWluZyxmYWxzZSkKCQlzcGVha2VyLkNo
+YXJhY3Rlci5IdW1hbm9pZDpDaGFuZ2VTdGF0ZShFbnVtLkh1bWFub2lkU3RhdGVUeXBlLlN3aW1t
+aW5nKQoJZW5kCgoKCgoJaWYgZ2FtZTpHZXRTZXJ2aWNlKCJQbGF5ZXJzIikuTG9jYWxQbGF5ZXIu
+Q2hhcmFjdGVyOkZpbmRGaXJzdENoaWxkT2ZDbGFzcygiSHVtYW5vaWQiKS5SaWdUeXBlID09IEVu
+dW0uSHVtYW5vaWRSaWdUeXBlLlI2IHRoZW4KCgoKCQlsb2NhbCBwbHIgPSBnYW1lLlBsYXllcnMu
+TG9jYWxQbGF5ZXIKCQlsb2NhbCB0b3JzbyA9IHBsci5DaGFyYWN0ZXIuVG9yc28KCQlsb2NhbCBm
+bHlpbmcgPSB0cnVlCgkJbG9jYWwgZGViID0gdHJ1ZQoJCWxvY2FsIGN0cmwgPSB7ZiA9IDAsIGIg
+PSAwLCBsID0gMCwgciA9IDB9CgkJbG9jYWwgbGFzdGN0cmwgPSB7ZiA9IDAsIGIgPSAwLCBsID0g
+MCwgciA9IDB9CgkJbG9jYWwgbWF4c3BlZWQgPSA1MAoJCWxvY2FsIHNwZWVkID0gMAoKCgkJbG9j
+YWwgYmcgPSBJbnN0YW5jZS5uZXcoIkJvZHlHeXJvIiwgdG9yc28pCgkJYmcuUCA9IDllNAoJCWJn
+Lm1heFRvcnF1ZSA9IFZlY3RvcjMubmV3KDllOSwgOWU5LCA5ZTkpCgkJYmcuY2ZyYW1lID0gdG9y
+c28uQ0ZyYW1lCgkJbG9jYWwgYnYgPSBJbnN0YW5jZS5uZXcoIkJvZHlWZWxvY2l0eSIsIHRvcnNv
+KQoJCWJ2LnZlbG9jaXR5ID0gVmVjdG9yMy5uZXcoMCwwLjEsMCkKCQlidi5tYXhGb3JjZSA9IFZl
+Y3RvcjMubmV3KDllOSwgOWU5LCA5ZTkpCgkJaWYgbm93ZSA9PSB0cnVlIHRoZW4KCQkJcGxyLkNo
+YXJhY3Rlci5IdW1hbm9pZC5QbGF0Zm9ybVN0YW5kID0gdHJ1ZQoJCWVuZAoJCXdoaWxlIG5vd2Ug
+PT0gdHJ1ZSBvciBnYW1lOkdldFNlcnZpY2UoIlBsYXllcnMiKS5Mb2NhbFBsYXllci5DaGFyYWN0
+ZXIuSHVtYW5vaWQuSGVhbHRoID09IDAgZG8KCQkJZ2FtZTpHZXRTZXJ2aWNlKCJSdW5TZXJ2aWNl
+IikuUmVuZGVyU3RlcHBlZDpXYWl0KCkKCgkJCWlmIGN0cmwubCArIGN0cmwuciB-PSAwIG9yIGN0
+cmwuZiArIGN0cmwuYiB-PSAwIHRoZW4KCQkJCXNwZWVkID0gc3BlZWQrLjUrKHNwZWVkL21heHNw
+ZWVkKQoJCQkJaWYgc3BlZWQgPiBtYXhzcGVlZCB0aGVuCgkJCQkJc3BlZWQgPSBtYXhzcGVlZAoJ
+CQkJZW5kCgkJCWVsc2VpZiBub3QgKGN0cmwubCArIGN0cmwuciB-PSAwIG9yIGN0cmwuZiArIGN0
+cmwuYiB-PSAwKSBhbmQgc3BlZWQgfj0gMCB0aGVuCgkJCQlzcGVlZCA9IHNwZWVkLTEKCQkJCWlm
+IHNwZWVkIDwgMCB0aGVuCgkJCQkJc3BlZWQgPSAwCgkJCQllbmQKCQkJZW5kCgkJCWlmIChjdHJs
+LmwgKyBjdHJsLnIpIH49IDAgb3IgKGN0cmwuZiArIGN0cmwuYikgfj0gMCB0aGVuCgkJCQlidi52
+ZWxvY2l0eSA9ICgoZ2FtZS5Xb3Jrc3BhY2UuQ3VycmVudENhbWVyYS5Db29yZGluYXRlRnJhbWUu
+bG9va1ZlY3RvciAqIChjdHJsLmYrY3RybC5iKSkgKyAoKGdhbWUuV29ya3NwYWNlLkN1cnJlbnRD
+YW1lcmEuQ29vcmRpbmF0ZUZyYW1lICogQ0ZyYW1lLm5ldyhjdHJsLmwrY3RybC5yLChjdHJsLmYr
+Y3RybC5iKSouMiwwKS5wKSAtIGdhbWUuV29ya3NwYWNlLkN1cnJlbnRDYW1lcmEuQ29vcmRpbmF0
+ZUZyYW1lLnApKSpzcGVlZAoJCQkJbGFzdGN0cmwgPSB7ZiA9IGN0cmwuZiwgYiA9IGN0cmwuYiwg
+bCA9IGN0cmwubCwgciA9IGN0cmwucn0KCQkJZWxzZWlmIChjdHJsLmwgKyBjdHJsLnIpID09IDAg
+YW5kIChjdHJsLmYgKyBjdHJsLmIpID09IDAgYW5kIHNwZWVkIH49IDAgdGhlbgoJCQkJYnYudmVs
+b2NpdHkgPSAoKGdhbWUuV29ya3NwYWNlLkN1cnJlbnRDYW1lcmEuQ29vcmRpbmF0ZUZyYW1lLmxv
+b2tWZWN0b3IgKiAobGFzdGN0cmwuZitsYXN0Y3RybC5iKSkgKyAoKGdhbWUuV29ya3NwYWNlLkN1
+cnJlbnRDYW1lcmEuQ29vcmRpbmF0ZUZyYW1lICogQ0ZyYW1lLm5ldyhsYXN0Y3RybC5sK2xhc3Rj
+dHJsLnIsKGxhc3RjdHJsLmYrbGFzdGN0cmwuYikqLjIsMCkucCkgLSBnYW1lLldvcmtzcGFjZS5D
+dXJyZW50Q2FtZXJhLkNvb3JkaW5hdGVGcmFtZS5wKSkqc3BlZWQKCQkJZWxzZQoJCQkJYnYudmVs
+b2NpdHkgPSBWZWN0b3IzLm5ldygwLDAsMCkKCQkJZW5kCgkJCS0tCWdhbWUuUGxheWVycy5Mb2Nh
+bFBsYXllci5DaGFyYWN0ZXIuQW5pbWF0ZS5EaXNhYmxlZCA9IHRydWUKCQkJYmcuY2ZyYW1lID0g
+Z2FtZS5Xb3Jrc3BhY2UuQ3VycmVudENhbWVyYS5Db29yZGluYXRlRnJhbWUgKiBDRnJhbWUuQW5n
+bGVzKC1tYXRoLnJhZCgoY3RybC5mK2N0cmwuYikqNTAqc3BlZWQvbWF4c3BlZWQpLDAsMCkKCQll
+bmQKCQljdHJsID0ge2YgPSAwLCBiID0gMCwgbCA9IDAsIHIgPSAwfQoJCWxhc3RjdHJsID0ge2Yg
+PSAwLCBiID0gMCwgbCA9IDAsIHIgPSAwfQoJCXNwZWVkID0gMAoJCWJnOkRlc3Ryb3koKQoJCWJ2
+OkRlc3Ryb3koKQoJCXBsci5DaGFyYWN0ZXIuSHVtYW5vaWQuUGxhdGZvcm1TdGFuZCA9IGZhbHNl
+CgkJZ2FtZS5QbGF5ZXJzLkxvY2FsUGxheWVyLkNoYXJhY3Rlci5BbmltYXRlLkRpc2FibGVkID0g
+ZmFsc2UKCQl0cHdhbGtpbmcgPSBmYWxzZQoKCgoKCWVsc2UKCQlsb2NhbCBwbHIgPSBnYW1lLlBs
+YXllcnMuTG9jYWxQbGF5ZXIKCQlsb2NhbCBVcHBlclRvcnNvID0gcGxyLkNoYXJhY3Rlci5VcHBl
+clRvcnNvCgkJbG9jYWwgZmx5aW5nID0gdHJ1ZQoJCWxvY2FsIGRlYiA9IHRydWUKCQlsb2NhbCBj
+dHJsID0ge2YgPSAwLCBiID0gMCwgbCA9IDAsIHIgPSAwfQoJCWxvY2FsIGxhc3RjdHJsID0ge2Yg
+PSAwLCBiID0gMCwgbCA9IDAsIHIgPSAwfQoJCWxvY2FsIG1heHNwZWVkID0gNTAKCQlsb2NhbCBz
+cGVlZCA9IDAKCgoJCWxvY2FsIGJnID0gSW5zdGFuY2UubmV3KCJCb2R5R3lybyIsIFVwcGVyVG9y
+c28pCgkJYmcuUCA9IDllNAoJCWJnLm1heFRvcnF1ZSA9IFZlY3RvcjMubmV3KDllOSwgOWU5LCA5
+ZTkpCgkJYmcuY2ZyYW1lID0gVXBwZXJUb3Jzby5DRnJhbWUKCQlsb2NhbCBidiA9IEluc3RhbmNl
+Lm5ldygiQm9keVZlbG9jaXR5IiwgVXBwZXJUb3JzbykKCQlidi52ZWxvY2l0eSA9IFZlY3RvcjMu
+bmV3KDAsMC4xLDApCgkJYnYubWF4Rm9yY2UgPSBWZWN0b3IzLm5ldyg5ZTksIDllOSwgOWU5KQoJ
+CWlmIG5vd2UgPT0gdHJ1ZSB0aGVuCgkJCXBsci5DaGFyYWN0ZXIuSHVtYW5vaWQuUGxhdGZvcm1T
+dGFuZCA9IHRydWUKCQllbmQKCQl3aGlsZSBub3dlID09IHRydWUgb3IgZ2FtZTpHZXRTZXJ2aWNl
+KCJQbGF5ZXJzIikuTG9jYWxQbGF5ZXIuQ2hhcmFjdGVyLkh1bWFub2lkLkhlYWx0aCA9PSAwIGRv
+CgkJCXdhaXQoKQoKCQkJaWYgY3RybC5sICsgY3RybC5yIH49IDAgb3IgY3RybC5mICsgY3RybC5i
+IH49IDAgdGhlbgoJCQkJc3BlZWQgPSBzcGVlZCsuNSsoc3BlZWQvbWF4c3BlZWQpCgkJCQlpZiBz
+cGVlZCA-IG1heHNwZWVkIHRoZW4KCQkJCQlzcGVlZCA9IG1heHNwZWVkCgkJCQllbmQKCQkJZWxz
+ZWlmIG5vdCAoY3RybC5sICsgY3RybC5yIH49IDAgb3IgY3RybC5mICsgY3RybC5iIH49IDApIGFu
+ZCBzcGVlZCB-PSAwIHRoZW4KCQkJCXNwZWVkID0gc3BlZWQtMQoJCQkJaWYgc3BlZWQgPCAwIHRo
+ZW4KCQkJCQlzcGVlZCA9IDAKCQkJCWVuZAoJCQllbmQKCQkJaWYgKGN0cmwubCArIGN0cmwucikg
+fj0gMCBvciAoY3RybC5mICsgY3RybC5iKSB-PSAwIHRoZW4KCQkJCWJ2LnZlbG9jaXR5ID0gKChn
+YW1lLldvcmtzcGFjZS5DdXJyZW50Q2FtZXJhLkNvb3JkaW5hdGVGcmFtZS5sb29rVmVjdG9yICog
+KGN0cmwuZitjdHJsLmIpKSArICgoZ2FtZS5Xb3Jrc3BhY2UuQ3VycmVudENhbWVyYS5Db29yZGlu
+YXRlRnJhbWUgKiBDRnJhbWUubmV3KGN0cmwubCtjdHJsLnIsKGN0cmwuZitjdHJsLmIpKi4yLDAp
+LnApIC0gZ2FtZS5Xb3Jrc3BhY2UuQ3VycmVudENhbWVyYS5Db29yZGluYXRlRnJhbWUucCkpKnNw
+ZWVkCgkJCQlsYXN0Y3RybCA9IHtmID0gY3RybC5mLCBiID0gY3RybC5iLCBsID0gY3RybC5sLCBy
+ID0gY3RybC5yfQoJCQllbHNlaWYgKGN0cmwubCArIGN0cmwucikgPT0gMCBhbmQgKGN0cmwuZiAr
+IGN0cmwuYikgPT0gMCBhbmQgc3BlZWQgfj0gMCB0aGVuCgkJCQlidi52ZWxvY2l0eSA9ICgoZ2Ft
+ZS5Xb3Jrc3BhY2UuQ3VycmVudENhbWVyYS5Db29yZGluYXRlRnJhbWUubG9va1ZlY3RvciAqIChs
+YXN0Y3RybC5mK2xhc3RjdHJsLmIpKSArICgoZ2FtZS5Xb3Jrc3BhY2UuQ3VycmVudENhbWVyYS5D
+b29yZGluYXRlRnJhbWUgKiBDRnJhbWUubmV3KGxhc3RjdHJsLmwrbGFzdGN0cmwuciwobGFzdGN0
+cmwuZitsYXN0Y3RybC5iKSouMiwwKS5wKSAtIGdhbWUuV29ya3NwYWNlLkN1cnJlbnRDYW1lcmEu
+Q29vcmRpbmF0ZUZyYW1lLnApKSpzcGVlZAoJCQllbHNlCgkJCQlidi52ZWxvY2l0eSA9IFZlY3Rv
+cjMubmV3KDAsMCwwKQoJCQllbmQKCgkJCWJnLmNmcmFtZSA9IGdhbWUuV29ya3NwYWNlLkN1cnJl
+bnRDYW1lcmEuQ29vcmRpbmF0ZUZyYW1lICogQ0ZyYW1lLkFuZ2xlcygtbWF0aC5yYWQoKGN0cmwu
+ZitjdHJsLmIpKjUwKnNwZWVkL21heHNwZWVkKSwwLDApCgkJZW5kCgkJY3RybCA9IHtmID0gMCwg
+YiA9IDAsIGwgPSAwLCByID0gMH0KCQlsYXN0Y3RybCA9IHtmID0gMCwgYiA9IDAsIGwgPSAwLCBy
+ID0gMH0KCQlzcGVlZCA9IDAKCQliZzpEZXN0cm95KCkKCQlidjpEZXN0cm95KCkKCQlwbHIuQ2hh
+cmFjdGVyLkh1bWFub2lkLlBsYXRmb3JtU3RhbmQgPSBmYWxzZQoJCWdhbWUuUGxheWVycy5Mb2Nh
+bFBsYXllci5DaGFyYWN0ZXIuQW5pbWF0ZS5EaXNhYmxlZCA9IGZhbHNlCgkJdHB3YWxraW5nID0g
+ZmFsc2UKCgoKCWVuZAoKCgoKCmVuZCkKCmxvY2FsIHRpcwoKdXAuTW91c2VCdXR0b24xRG93bjpj
+b25uZWN0KGZ1bmN0aW9uKCkKCXRpcyA9IHVwLk1vdXNlRW50ZXI6Y29ubmVjdChmdW5jdGlvbigp
+CgkJd2hpbGUgdGlzIGRvCgkJCXdhaXQoKQoJCQlnYW1lLlBsYXllcnMuTG9jYWxQbGF5ZXIuQ2hh
+cmFjdGVyLkh1bWFub2lkUm9vdFBhcnQuQ0ZyYW1lID0gZ2FtZS5QbGF5ZXJzLkxvY2FsUGxheWVy
+LkNoYXJhY3Rlci5IdW1hbm9pZFJvb3RQYXJ0LkNGcmFtZSAqIENGcmFtZS5uZXcoMCwxLDApCgkJ
+ZW5kCgllbmQpCmVuZCkKCnVwLk1vdXNlTGVhdmU6Y29ubmVjdChmdW5jdGlvbigpCglpZiB0aXMg
+dGhlbgoJCXRpczpEaXNjb25uZWN0KCkKCQl0aXMgPSBuaWwKCWVuZAplbmQpCgpsb2NhbCBkaXMK
+CmRvd24uTW91c2VCdXR0b24xRG93bjpjb25uZWN0KGZ1bmN0aW9uKCkKCWRpcyA9IGRvd24uTW91
+c2VFbnRlcjpjb25uZWN0KGZ1bmN0aW9uKCkKCQl3aGlsZSBkaXMgZG8KCQkJd2FpdCgpCgkJCWdh
+bWUuUGxheWVycy5Mb2NhbFBsYXllci5DaGFyYWN0ZXIuSHVtYW5vaWRSb290UGFydC5DRnJhbWUg
+PSBnYW1lLlBsYXllcnMuTG9jYWxQbGF5ZXIuQ2hhcmFjdGVyLkh1bWFub2lkUm9vdFBhcnQuQ0Zy
+YW1lICogQ0ZyYW1lLm5ldygwLC0xLDApCgkJZW5kCgllbmQpCmVuZCkKCmRvd24uTW91c2VMZWF2
+ZTpjb25uZWN0KGZ1bmN0aW9uKCkKCWlmIGRpcyB0aGVuCgkJZGlzOkRpc2Nvbm5lY3QoKQoJCWRp
+cyA9IG5pbAoJZW5kCmVuZCkKCgpnYW1lOkdldFNlcnZpY2UoIlBsYXllcnMiKS5Mb2NhbFBsYXll
+ci5DaGFyYWN0ZXJBZGRlZDpDb25uZWN0KGZ1bmN0aW9uKGNoYXIpCgl3YWl0KDAuNykKCWdhbWUu
+UGxheWVycy5Mb2NhbFBsYXllci5DaGFyYWN0ZXIuSHVtYW5vaWQuUGxhdGZvcm1TdGFuZCA9IGZh
+bHNlCglnYW1lLlBsYXllcnMuTG9jYWxQbGF5ZXIuQ2hhcmFjdGVyLkFuaW1hdGUuRGlzYWJsZWQg
+PSBmYWxzZQoKZW5kKQoKCnBsdXMuTW91c2VCdXR0b24xRG93bjpjb25uZWN0KGZ1bmN0aW9uKCkK
+CXNwZWVkcyA9IHNwZWVkcyArIDEKCXNwZWVkLlRleHQgPSBzcGVlZHMKCWlmIG5vd2UgPT0gdHJ1
+ZSB0aGVuCgoKCQl0cHdhbGtpbmcgPSBmYWxzZQoJCWZvciBpID0gMSwgc3BlZWRzIGRvCgkJCXNw
+YXduKGZ1bmN0aW9uKCkKCgkJCQlsb2NhbCBoYiA9IGdhbWU6R2V0U2VydmljZSgiUnVuU2Vydmlj
+ZSIpLkhlYXJ0YmVhdAkKCgoJCQkJdHB3YWxraW5nID0gdHJ1ZQoJCQkJbG9jYWwgY2hyID0gZ2Ft
+ZS5QbGF5ZXJzLkxvY2FsUGxheWVyLkNoYXJhY3RlcgoJCQkJbG9jYWwgaHVtID0gY2hyIGFuZCBj
+aHI6RmluZEZpcnN0Q2hpbGRXaGljaElzQSgiSHVtYW5vaWQiKQoJCQkJd2hpbGUgdHB3YWxraW5n
+IGFuZCBoYjpXYWl0KCkgYW5kIGNociBhbmQgaHVtIGFuZCBodW0uUGFyZW50IGRvCgkJCQkJaWYg
+aHVtLk1vdmVEaXJlY3Rpb24uTWFnbml0dWRlID4gMCB0aGVuCgkJCQkJCWNocjpUcmFuc2xhdGVC
+eShodW0uTW92ZURpcmVjdGlvbikKCQkJCQllbmQKCQkJCWVuZAoKCQkJZW5kKQoJCWVuZAoJZW5k
+CmVuZCkKbWluZS5Nb3VzZUJ1dHRvbjFEb3duOmNvbm5lY3QoZnVuY3Rpb24oKQoJaWYgc3BlZWRz
+ID09IDEgdGhlbgoJCXNwZWVkLlRleHQgPSAnY2Fubm90IGJlIGxlc3MgdGhhbiAxJwoJCXdhaXQo
+MSkKCQlzcGVlZC5UZXh0ID0gc3BlZWRzCgllbHNlCgkJc3BlZWRzID0gc3BlZWRzIC0gMQoJCXNw
+ZWVkLlRleHQgPSBzcGVlZHMKCQlpZiBub3dlID09IHRydWUgdGhlbgoJCQl0cHdhbGtpbmcgPSBm
+YWxzZQoJCQlmb3IgaSA9IDEsIHNwZWVkcyBkbwoJCQkJc3Bhd24oZnVuY3Rpb24oKQoKCQkJCQls
+b2NhbCBoYiA9IGdhbWU6R2V0U2VydmljZSgiUnVuU2VydmljZSIpLkhlYXJ0YmVhdAkKCgoJCQkJ
+CXRwd2Fsa2luZyA9IHRydWUKCQkJCQlsb2NhbCBjaHIgPSBnYW1lLlBsYXllcnMuTG9jYWxQbGF5
+ZXIuQ2hhcmFjdGVyCgkJCQkJbG9jYWwgaHVtID0gY2hyIGFuZCBjaHI6RmluZEZpcnN0Q2hpbGRX
+aGljaElzQSgiSHVtYW5vaWQiKQoJCQkJCXdoaWxlIHRwd2Fsa2luZyBhbmQgaGI6V2FpdCgpIGFu
+ZCBjaHIgYW5kIGh1bSBhbmQgaHVtLlBhcmVudCBkbwoJCQkJCQlpZiBodW0uTW92ZURpcmVjdGlv
+bi5NYWduaXR1ZGUgPiAwIHRoZW4KCQkJCQkJCWNocjpUcmFuc2xhdGVCeShodW0uTW92ZURpcmVj
+dGlvbikKCQkJCQkJZW5kCgkJCQkJZW5kCgoJCQkJZW5kKQoJCQllbmQKCQllbmQKCWVuZAplbmQp
+CgpjbG9zZWJ1dHRvbi5Nb3VzZUJ1dHRvbjFDbGljazpDb25uZWN0KGZ1bmN0aW9uKCkKCW1haW46
+RGVzdHJveSgpCmVuZCkKCm1pbmkuTW91c2VCdXR0b24xQ2xpY2s6Q29ubmVjdChmdW5jdGlvbigp
+Cgl1cC5WaXNpYmxlID0gZmFsc2UKCWRvd24uVmlzaWJsZSA9IGZhbHNlCglvbm9mLlZpc2libGUg
+PSBmYWxzZQoJcGx1cy5WaXNpYmxlID0gZmFsc2UKCXNwZWVkLlZpc2libGUgPSBmYWxzZQoJbWlu
+ZS5WaXNpYmxlID0gZmFsc2UKCW1pbmkuVmlzaWJsZSA9IGZhbHNlCgltaW5pMi5WaXNpYmxlID0g
+dHJ1ZQoJbWFpbi5GcmFtZS5CYWNrZ3JvdW5kVHJhbnNwYXJlbmN5ID0gMQoJY2xvc2VidXR0b24u
+UG9zaXRpb24gPSAgVURpbTIubmV3KDAsIDAsIC0xLCA1NykKZW5kKQoKbWluaTIuTW91c2VCdXR0
+b24xQ2xpY2s6Q29ubmVjdChmdW5jdGlvbigpCgl1cC5WaXNpYmxlID0gdHJ1ZQoJZG93bi5WaXNp
+YmxlID0gdHJ1ZQoJb25vZi5WaXNpYmxlID0gdHJ1ZQoJcGx1cy5WaXNpYmxlID0gdHJ1ZQoJc3Bl
+ZWQuVmlzaWJsZSA9IHRydWUKCW1pbmUuVmlzaWJsZSA9IHRydWUKCW1pbmkuVmlzaWJsZSA9IHRy
+dWUKCW1pbmkyLlZpc2libGUgPSBmYWxzZQoJbWFpbi5GcmFtZS5CYWNrZ3JvdW5kVHJhbnNwYXJl
+bmN5ID0gMCAKCWNsb3NlYnV0dG9uLlBvc2l0aW9uID0gIFVEaW0yLm5ldygwLCAwLCAtMSwgMjcp
+CmVuZCk
